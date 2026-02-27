@@ -7,11 +7,11 @@
 # show it being destroyed — which is exactly what the AI reviewer should catch.
 
 terraform {
-  source = "../../../modules//security-group"
+  source = "../../../../modules//security-group"
 }
 
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 dependency "vpc" {

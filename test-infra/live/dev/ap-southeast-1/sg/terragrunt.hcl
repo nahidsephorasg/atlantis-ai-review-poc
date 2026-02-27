@@ -2,11 +2,11 @@
 # Defines ingress/egress rules for the ECS API service
 
 terraform {
-  source = "../../../modules//security-group"
+  source = "../../../../modules//security-group"
 }
 
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 dependency "vpc" {

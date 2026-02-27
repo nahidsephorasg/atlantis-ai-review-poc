@@ -16,11 +16,11 @@
 #   The AI reviewer should flag missing required tags.
 
 terraform {
-  source = "../../../modules//ecs-service"
+  source = "../../../../modules//ecs-service"
 }
 
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 dependency "vpc" {

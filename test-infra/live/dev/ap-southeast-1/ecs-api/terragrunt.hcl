@@ -5,11 +5,11 @@
 # to simulate a PR that triggers the AI review.
 
 terraform {
-  source = "../../../modules//ecs-service"
+  source = "../../../../modules//ecs-service"
 }
 
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 dependency "vpc" {
@@ -49,8 +49,8 @@ inputs = {
   # Original:  cpu = 256, memory = 512
   # Change to: cpu = 512, memory = 1024
   # ---------------------------------------------------------
-  cpu    = 512
-  memory = 1024
+  cpu    = 256
+  memory = 512
 
   environment_variables = [
     {
