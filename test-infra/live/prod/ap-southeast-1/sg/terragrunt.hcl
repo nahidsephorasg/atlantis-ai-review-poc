@@ -16,6 +16,14 @@ include "root" {
 
 dependency "vpc" {
   config_path = "../vpc"
+
+  mock_outputs = {
+    vpc_id             = "vpc-mock-prod-00000000"
+    private_subnet_ids = ["subnet-mock-prod-priv-1", "subnet-mock-prod-priv-2"]
+    public_subnet_ids  = ["subnet-mock-prod-pub-1", "subnet-mock-prod-pub-2"]
+    vpc_cidr_block     = "10.20.0.0/16"
+  }
+  mock_outputs_allowed_terraform_commands = ["init", "validate", "plan"]
 }
 
 inputs = {
