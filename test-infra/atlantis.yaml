@@ -1,0 +1,70 @@
+# Atlantis repo-level config for the test-infra example
+# This tells Atlantis which directories to watch for changes
+
+version: 3
+automerge: false
+parallel_plan: true
+parallel_apply: false
+
+projects:
+  # ---- DEV Environment ----
+  - name: dev-vpc
+    dir: live/dev/ap-southeast-1/vpc
+    workspace: default
+    autoplan:
+      when_modified:
+        - "*.tf"
+        - "*.hcl"
+        - "../../../modules/vpc/**"
+      enabled: true
+
+  - name: dev-sg
+    dir: live/dev/ap-southeast-1/sg
+    workspace: default
+    autoplan:
+      when_modified:
+        - "*.tf"
+        - "*.hcl"
+        - "../../../modules/security-group/**"
+      enabled: true
+
+  - name: dev-ecs-api
+    dir: live/dev/ap-southeast-1/ecs-api
+    workspace: default
+    autoplan:
+      when_modified:
+        - "*.tf"
+        - "*.hcl"
+        - "../../../modules/ecs-service/**"
+      enabled: true
+
+  # ---- PROD Environment ----
+  - name: prod-vpc
+    dir: live/prod/ap-southeast-1/vpc
+    workspace: default
+    autoplan:
+      when_modified:
+        - "*.tf"
+        - "*.hcl"
+        - "../../../modules/vpc/**"
+      enabled: true
+
+  - name: prod-sg
+    dir: live/prod/ap-southeast-1/sg
+    workspace: default
+    autoplan:
+      when_modified:
+        - "*.tf"
+        - "*.hcl"
+        - "../../../modules/security-group/**"
+      enabled: true
+
+  - name: prod-ecs-api
+    dir: live/prod/ap-southeast-1/ecs-api
+    workspace: default
+    autoplan:
+      when_modified:
+        - "*.tf"
+        - "*.hcl"
+        - "../../../modules/ecs-service/**"
+      enabled: true

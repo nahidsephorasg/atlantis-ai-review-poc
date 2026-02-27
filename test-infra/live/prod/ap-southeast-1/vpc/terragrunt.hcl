@@ -1,0 +1,18 @@
+# Prod VPC
+# Creates the VPC for the production environment
+
+terraform {
+  source = "../../../modules//vpc"
+}
+
+include "root" {
+  path = find_in_parent_folders()
+}
+
+inputs = {
+  name               = "prod-platform"
+  cidr_block         = "10.20.0.0/16"
+  private_subnets    = ["10.20.1.0/24", "10.20.2.0/24"]
+  public_subnets     = ["10.20.101.0/24", "10.20.102.0/24"]
+  availability_zones = ["ap-southeast-1a", "ap-southeast-1b"]
+}
