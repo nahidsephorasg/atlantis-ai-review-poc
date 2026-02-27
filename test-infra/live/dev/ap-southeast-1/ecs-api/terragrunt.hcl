@@ -35,8 +35,8 @@ inputs = {
   # Original:  cpu = 256, memory = 512
   # Change to: cpu = 512, memory = 1024
   # ---------------------------------------------------------
-  cpu    = 256
-  memory = 512
+  cpu    = 1024
+  memory = 2048
 
   environment_variables = [
     {
