@@ -37,6 +37,9 @@ generate "provider" {
 provider "aws" {
   region = "${local.region}"
 
+  skip_credentials_validation = true
+  skip_requesting_account_id  = true
+
   default_tags {
     tags = {
       Environment = "${local.environment}"

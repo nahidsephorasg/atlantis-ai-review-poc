@@ -82,7 +82,6 @@ variable "tags" {
 # ------------------------------------------------------------------
 
 data "aws_region" "current" {}
-data "aws_caller_identity" "current" {}
 
 # ------------------------------------------------------------------
 # Resources
@@ -181,11 +180,6 @@ resource "aws_ecs_service" "this" {
     subnets          = var.subnet_ids
     security_groups  = var.security_group_ids
     assign_public_ip = false
-  }
-
-  deployment_configuration {
-    maximum_percent         = 200
-    minimum_healthy_percent = 100
   }
 
   tags = merge(var.tags, {
