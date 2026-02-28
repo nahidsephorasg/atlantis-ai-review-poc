@@ -5,19 +5,33 @@
 # to simulate a PR that triggers the AI review.
 
 terraform {
-  source = "../../../modules//ecs-service"
+  source = "../../../../modules//ecs-service"
 }
 
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 dependency "vpc" {
   config_path = "../vpc"
+
+  mock_outputs = {
+    vpc_id             = "vpc-mock-dev-00000000"
+    private_subnet_ids = ["subnet-mock-dev-priv-1", "subnet-mock-dev-priv-2"]
+    public_subnet_ids  = ["subnet-mock-dev-pub-1", "subnet-mock-dev-pub-2"]
+    vpc_cidr_block     = "10.10.0.0/16"
+  }
+  mock_outputs_allowed_terraform_commands = ["init", "validate", "plan"]
 }
 
 dependency "sg" {
   config_path = "../sg"
+
+  mock_outputs = {
+    security_group_id  = "sg-mock-dev-00000000"
+    security_group_arn = "arn:aws:ec2:ap-southeast-1:000000000000:security-group/sg-mock-dev-00000000"
+  }
+  mock_outputs_allowed_terraform_commands = ["init", "validate", "plan"]
 }
 
 inputs = {

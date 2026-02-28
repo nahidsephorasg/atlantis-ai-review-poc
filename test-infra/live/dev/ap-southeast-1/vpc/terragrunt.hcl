@@ -2,11 +2,11 @@
 # Creates the VPC for the dev environment
 
 terraform {
-  source = "../../../modules//vpc"
+  source = "../../../../modules//vpc"
 }
 
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 inputs = {

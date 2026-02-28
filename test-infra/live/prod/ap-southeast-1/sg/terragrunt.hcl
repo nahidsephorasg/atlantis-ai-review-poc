@@ -7,15 +7,23 @@
 # show it being destroyed — which is exactly what the AI reviewer should catch.
 
 terraform {
-  source = "../../../modules//security-group"
+  source = "../../../../modules//security-group"
 }
 
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 dependency "vpc" {
   config_path = "../vpc"
+
+  mock_outputs = {
+    vpc_id             = "vpc-mock-prod-00000000"
+    private_subnet_ids = ["subnet-mock-prod-priv-1", "subnet-mock-prod-priv-2"]
+    public_subnet_ids  = ["subnet-mock-prod-pub-1", "subnet-mock-prod-pub-2"]
+    vpc_cidr_block     = "10.20.0.0/16"
+  }
+  mock_outputs_allowed_terraform_commands = ["init", "validate", "plan"]
 }
 
 inputs = {
