@@ -39,7 +39,7 @@ inputs = {
   container_image    = "nginx:1.25-alpine"
   container_port     = 80
   health_check_path  = "/health"
-  desired_count      = 1
+  desired_count      = 0
   subnet_ids         = dependency.vpc.outputs.private_subnet_ids
   security_group_ids = [dependency.sg.outputs.security_group_id]
   vpc_id             = dependency.vpc.outputs.vpc_id
@@ -49,8 +49,8 @@ inputs = {
   # Original:  cpu = 256, memory = 512
   # Change to: cpu = 512, memory = 1024
   # ---------------------------------------------------------
-  cpu    = 256
-  memory = 512
+  cpu    = 512
+  memory = 1024
 
   environment_variables = [
     {
